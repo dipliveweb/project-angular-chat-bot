@@ -1,5 +1,9 @@
 import { Component, OnInit,Input } from '@angular/core';
 import{FileUploadComponent} from '../file-upload/file-upload.component';
+import{AskQuestionService, Message} from '../shared/services/ask-question.service';
+
+import {Observable, BehaviorSubject} from "rxjs";
+import { scan } from 'rxjs/operators'
 
 @Component({
   selector: 'app-ask-question',
@@ -8,19 +12,22 @@ import{FileUploadComponent} from '../file-upload/file-upload.component';
 })
 export class AskQuestionComponent implements OnInit {
     
-result:string = "";
-
-@Input('name') masterName: string;
-
- onSave(){
-     //service code goes here
-     console.log("inside of ask-question");
-     this.result = "You result is ....... "; 
- }    
+    messages: Observable<Message[]>;
+    formValue: string;
     
-  constructor() { }
+  constructor(private askQuestion: AskQuestionService) { }
 
   ngOnInit() {
+      //this.askQuestion.talk();
+    this.messages = this.askQuestion.conversation.asObservable()
+      .pipe(
+        scan((acc, val) => acc.concat(val))
+      )
+  }
+    
+  sendMessage(){
+      this.askQuestion.converse(this.formValue);
+      this.formValue = '';
   }
 
 }

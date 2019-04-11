@@ -1,11 +1,16 @@
-<div>
-    <!--<p>Welcome user {{masterName}} </p>-->
-    <b style="margin-left:40px">Please enter your question</b>
-    <div class="form-group row">
-        <div class="form-control" class="col-6" style="margin-left: 40px; margin-top: 5px" >
-            <input type="text"  [(ngModel)]="name" placeholder="question"  size="83 px"/>
-        </div>
-    </div>    
-    <button type="button"  style="margin-left: 35px" class="btn btn-info" (click)="onSave()">Get Results!</button>
-    <div style="margin-left: 35px; margin-top: 35px"><p>{{result}} </p></div> 
-</div>
+<ng-container *ngFor="let message of messages | async">
+
+    <div class="message" [ngClass]="{  'from': message.sentBy === 'bot',
+                                        'to':  message.sentBy === 'user' }">
+        
+    {{message.content}}
+    </div>
+
+
+</ng-container> 
+
+<label style="margin-left: 10px" for ="nameField">Your Message</label>
+
+<input style="margin-left: 10px; width: 630px" [(ngModel)] = "formValue" (keyup.enter) ="sendMessage()" type="text">
+
+<button style="margin-left: 10px"(click)="sendMessage()">Send</button>

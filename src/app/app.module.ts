@@ -7,6 +7,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { AskQuestionComponent } from './ask-question/ask-question.component';
 import { HttpClientModule }    from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import{AskQuestionService, Message} from './shared/services/ask-question.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AskQuestionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
