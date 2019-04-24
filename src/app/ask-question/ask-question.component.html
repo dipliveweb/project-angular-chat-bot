@@ -2,12 +2,9 @@
 
     <div class="message" [ngClass]="{  'from': message.sentBy === 'bot',
                                         'to':  message.sentBy === 'user' }">
-        
-    {{message.content}}
+       {{message.content}}
     </div>
-
-
-</ng-container> 
+</ng-container>
 
 <label style="margin-left: 10px" for ="nameField">Your Message</label>
 
