@@ -23,7 +23,7 @@ export class FileUploadComponent implements OnInit {
 
     reader.onload = function() {
       this.fileText = reader.result.toString();
-      console.log("Inside of File-Upload page" +this.fileText);
+     //// console.log("Inside of File-Upload page" +this.fileText);
       sessionStorage.setItem("fileContent", this.fileText);
     };
 
