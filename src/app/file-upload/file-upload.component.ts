@@ -25,6 +25,7 @@ export class FileUploadComponent implements OnInit {
       this.fileText = reader.result.toString();
      //// console.log("Inside of File-Upload page" +this.fileText);
       sessionStorage.setItem("fileContent", this.fileText);
+	  console.log("test");
     };
 
     //this.selectedFile = event.target.files[1].name;
